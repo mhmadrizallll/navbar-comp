@@ -6,11 +6,13 @@ import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { NavLinks } from "../data";
 import { Link, useLocation } from "react-router";
 import ResponsiveMenu from "./ResponsiveMenu";
+import InputSearch from "./InputSearch";
 
 const NavbarComponent = () => {
   const location = useLocation();
   const [open, setOpen] = React.useState(false);
   const [openSearch, setOpenSearch] = React.useState(false);
+  const [result, setResult] = React.useState("");
   return (
     <>
       <nav className="container mx-auto">
@@ -53,7 +55,7 @@ const NavbarComponent = () => {
               <Link to="/cart">
                 <FaShoppingCart className="text-xl hover:text-secondary" />
               </Link>
-              <button className="">
+              <button onClick={() => setOpenSearch(!openSearch)}>
                 <FiSearch className="text-xl hover:text-secondary" />
               </button>
             </div>
@@ -85,8 +87,11 @@ const NavbarComponent = () => {
           </div>
         </div>
       </nav>
+      <InputSearch openSearch={openSearch} setResult={setResult} />
       {/* Responsive menu */}
       <ResponsiveMenu open={open} />
+
+      <div className="container mx-auto pt-10">{result}</div>
     </>
   );
 };
