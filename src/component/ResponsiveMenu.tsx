@@ -14,7 +14,7 @@ const ResponsiveMenu: React.FC<Props> = ({ open }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.5 }}
-          className="absolute w-full top-30 left-0 h-screen z-10"
+          className="fixed w-full top-41 left-0 h-screen z-10"
         >
           <div className="text-xl font-medium bg-linear-45/oklch from-first via-second to-third text-white py-10 rounded-b-xl">
             <ul className="flex flex-col justify-center items-center gap-6">
