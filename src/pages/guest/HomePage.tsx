@@ -1,10 +1,11 @@
 // import Image1 from "../../assets/img/ayo.jpg";
 import Image2 from "../../assets/img/ayo2.jpeg";
 import { ImageSwiper } from "../../data";
-import { FaBook } from "react-icons/fa6";
+// import { FaBook } from "react-icons/fa6";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { categories } from "../../data";
 
 // Import Swiper styles
 import "swiper/css";
@@ -19,18 +20,20 @@ const HomePage = () => {
   return (
     <div className="homepage container mx-auto">
       {/* Banner */}
-      <div className="banner pt-42">
-        <div className="flex justify-center items-center">
-          {/* Gambar utama - Tinggi 2x dari gambar kecil */}
-          <div className="w-full md:w-8/12">
+      <div className="banner pt-42 relative">
+        <div className="flex justify-center md:gap-5 items-center p-5 md:p-10">
+          {/* Tombol Navigasi di luar */}
+          <div className="w-full md:w-8/12 swipper-main">
+            <button className="custom-prev swiper-button-prev"></button>
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
               loop={true}
-              pagination={{
-                clickable: true,
+              pagination={{ clickable: true }}
+              navigation={{
+                nextEl: ".custom-next",
+                prevEl: ".custom-prev",
               }}
-              navigation={true}
               modules={[Pagination, Navigation]}
               className="mySwiper"
             >
@@ -39,13 +42,14 @@ const HomePage = () => {
                   <Link to={image.path}>
                     <img
                       src={image.image}
-                      alt=""
+                      alt={image.path}
                       className="w-full md:h-[300px] lg:h-[410px] xl:h-[500px] rounded-2xl shadow-b-2xl"
                     />
                   </Link>
                 </SwiperSlide>
               ))}
             </Swiper>
+            <button className="custom-next swiper-button-next"></button>
           </div>
 
           {/* Container untuk dua gambar kecil */}
@@ -67,30 +71,49 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       {/* Kategori */}
-      <div className="categories pt-20">
-        <div className="flex justify-center items-center gap-5 border">
-          <div className="flex flex-col items-center justify-center shadow p-10 rounded-2xl">
-            <FaBook className="text-4xl" />
-            <p>Buku Romance</p>
-          </div>
-          <div className="flex flex-col items-center justify-center shadow p-10 rounded-2xl">
-            <FaBook className="text-4xl" />
-            <p>Buku Romance</p>
-          </div>
-          <div className="flex flex-col items-center justify-center shadow p-10 rounded-2xl">
-            <FaBook className="text-4xl" />
-            <p>Buku Romance</p>
-          </div>
-          <div className="flex flex-col items-center justify-center shadow p-10 rounded-2xl">
-            <FaBook className="text-4xl" />
-            <p>Buku Romance</p>
-          </div>
-          <div className="flex flex-col items-center justify-center shadow p-10 rounded-2xl">
-            <FaBook className="text-4xl" />
-            <p>Buku Romance</p>
-          </div>
-        </div>
+      <div className="categories my-10 p-5">
+        <Swiper
+          spaceBetween={30}
+          breakpoints={{
+            320: { slidesPerView: 2 },
+            640: { slidesPerView: 4 },
+            1024: { slidesPerView: 6 },
+            1440: { slidesPerView: 8 },
+          }}
+          className="mySwiper overflow-visible" // Pastikan Swiper tidak menyembunyikan shadow
+        >
+          {/* {[...Array(10)].map((_, index) => (
+            <SwiperSlide key={index} className="overflow-visible p-2">
+              <div
+                className="flex flex-col items-center gap-2 rounded-xl shadow 
+                      h-30 justify-center hover:bg-amber-50
+                      transition-all duration-300 ease-in-out overflow-visible hover:cursor-pointer"
+              >
+                <FaBook size={30} />
+                <p className="text-sm">Book</p>
+              </div>
+            </SwiperSlide>
+          ))} */}
+          {categories.map((category) => {
+            const Icon = category.icon; // Ambil referensi ikon
+            return (
+              <SwiperSlide key={category.id} className="overflow-visible p-2">
+                <Link to={`/category/${category.id}`}>
+                  <div
+                    className="flex flex-col items-center gap-2 rounded-xl shadow 
+              h-30 justify-center hover:bg-amber-50
+              transition-all duration-300 ease-in-out overflow-visible hover:cursor-pointer"
+                  >
+                    <Icon className="text-2xl" /> {/* Render ikon */}
+                    <p className="text-sm">{category.name}</p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
     </div>
   );

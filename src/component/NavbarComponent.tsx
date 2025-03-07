@@ -22,24 +22,24 @@ const NavbarComponent = () => {
   // const [result, setResult] = React.useState("");
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 w-full h-15 flex justify-end items-center bg-linear-45/oklch from-first via-second to-third text-white">
+      <div className="fixed top-0 left-0 right-0 z-50 w-full h-10 flex justify-end items-center bg-linear-45/oklch from-first via-second to-third text-white">
         <div className="me-10 sm:me-20 xl:me-20 ">
           <div className="flex items-center gap-10">
             <Link
               to={"/promo"}
-              className="font-secondary hover:bg-white hover:text-second px-2 sm:px-4 py-1 rounded-full"
+              className="font-secondary hover:bg-white hover:text-second text-sm md:text-lg px-2 sm:px-4 py-1 rounded-full"
             >
               Promo
             </Link>
             <Link
               to={"/store"}
-              className="font-secondary hover:bg-white hover:text-second px-2 sm:px-4 py-1 rounded-full"
+              className="font-secondary hover:bg-white hover:text-second text-sm md:text-lg px-2 sm:px-4 py-1 rounded-full"
             >
               My Store
             </Link>
             <Link
               to={"/contact"}
-              className="font-secondary hover:bg-white hover:text-second px-2 sm:px-4 py-1 rounded-full"
+              className="font-secondary hover:bg-white hover:text-second text-sm md:text-lg px-2 sm:px-4 py-1 rounded-full"
             >
               Contact Me
             </Link>
