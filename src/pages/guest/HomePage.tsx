@@ -11,6 +11,7 @@ import { categories } from "../../data";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Autoplay } from "swiper/modules";
 
 // Import required modules
 import { Pagination, Navigation } from "swiper/modules";
@@ -28,13 +29,17 @@ const HomePage = () => {
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
-              loop={true}
+              loop={true} // Loop agar terus berjalan
+              autoplay={{
+                delay: 5000, // Waktu antara slide (dalam ms)
+                disableOnInteraction: false, // Jangan berhenti jika user interaksi
+              }}
               pagination={{ clickable: true }}
               navigation={{
                 nextEl: ".custom-next",
                 prevEl: ".custom-prev",
               }}
-              modules={[Pagination, Navigation]}
+              modules={[Pagination, Navigation, Autoplay]}
               className="mySwiper"
             >
               {ImageSwiper.map((image) => (
@@ -76,37 +81,31 @@ const HomePage = () => {
       <div className="categories my-10 p-5">
         <Swiper
           spaceBetween={30}
+          loop={true} // Loop agar terus berjalan
+          autoplay={{
+            delay: 2000, // Waktu antara slide (dalam ms)
+            disableOnInteraction: false, // Jangan berhenti jika user interaksi
+          }}
+          modules={[Autoplay]} // Tambahkan modul autoplay
           breakpoints={{
             320: { slidesPerView: 2 },
             640: { slidesPerView: 4 },
             1024: { slidesPerView: 6 },
             1440: { slidesPerView: 8 },
           }}
-          className="mySwiper overflow-visible" // Pastikan Swiper tidak menyembunyikan shadow
+          className="mySwiper overflow-visible"
         >
-          {/* {[...Array(10)].map((_, index) => (
-            <SwiperSlide key={index} className="overflow-visible p-2">
-              <div
-                className="flex flex-col items-center gap-2 rounded-xl shadow 
-                      h-30 justify-center hover:bg-amber-50
-                      transition-all duration-300 ease-in-out overflow-visible hover:cursor-pointer"
-              >
-                <FaBook size={30} />
-                <p className="text-sm">Book</p>
-              </div>
-            </SwiperSlide>
-          ))} */}
           {categories.map((category) => {
-            const Icon = category.icon; // Ambil referensi ikon
+            const Icon = category.icon;
             return (
               <SwiperSlide key={category.id} className="overflow-visible p-2">
                 <Link to={`/category/${category.id}`}>
                   <div
                     className="flex flex-col items-center gap-2 rounded-xl shadow 
-              h-30 justify-center hover:bg-amber-50
-              transition-all duration-300 ease-in-out overflow-visible hover:cursor-pointer"
+                  h-30 justify-center hover:bg-amber-50
+                  transition-all duration-300 ease-in-out overflow-visible hover:cursor-pointer"
                   >
-                    <Icon className="text-2xl" /> {/* Render ikon */}
+                    <Icon className="text-2xl" />
                     <p className="text-sm">{category.name}</p>
                   </div>
                 </Link>
