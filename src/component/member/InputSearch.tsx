@@ -9,12 +9,7 @@ interface Props {
 }
 
 const InputSearch: React.FC<Props> = ({ openSearch, setSearchQuery }) => {
-  // const { setSearchQuery } = useSearch();
   const [searchTerm, setSearchTems] = React.useState("");
-  // const navigate = useNavigate();
-  //   const handleSearch = (input: string) => {
-  //     setResult(input);
-  //   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

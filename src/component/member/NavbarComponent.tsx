@@ -4,11 +4,11 @@ import { FiBookOpen } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 // import { IoMdContact } from "react-icons/io";
-import { NavLinks } from "../data";
+import { NavLinks } from "../../data";
 import { Link, useLocation } from "react-router";
 import ResponsiveMenu from "./ResponsiveMenu";
 import InputSearch from "./InputSearch";
-import { useSearch } from "../context/SearchContext";
+import { useSearch } from "../../context/SearchContext";
 
 // interface NavbarComponentProps {
 //   setResult: (result: string) => void;
@@ -91,9 +91,11 @@ const NavbarComponent = () => {
                   <FiSearch className="text-xl hover:text-second hover:cursor-pointer" />
                 </button>
               </div>
-              <button className="bg-transparent border-2 border-second text-second px-5 py-1 rounded-xl hidden md:block hover:bg-second hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer">
-                Login
-              </button>
+              <Link to="/login">
+                <button className="bg-transparent border-2 border-second text-second px-5 py-1 rounded-xl hidden md:block hover:bg-second hover:text-white transition-all duration-300 ease-in-out hover:cursor-pointer">
+                  Login
+                </button>
+              </Link>
             </div>
             {/* Humburger */}
             <div className="md:hidden">
